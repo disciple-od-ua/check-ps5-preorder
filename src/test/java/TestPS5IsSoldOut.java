@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.concurrent.TimeUnit;
+
 public class TestPS5IsSoldOut {
     private WebDriver driver;
 
@@ -29,14 +31,17 @@ public class TestPS5IsSoldOut {
         options.addArguments("--headless");
         options.addArguments("--disable-gpu");
         driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         System.out.println("Configuring driver is finished");
     }
 
     @Test
     public void checkRozetka() {
         System.out.println("Started test");
-        driver.get("https://rozetka.com.ua/playstation_5/p223588825");
+        driver.navigate().to("https://rozetka.com.ua/playstation_5/p223588825");
+        System.out.println("Started test");
         WebElement productStatus = driver.findElement(By.className("product__status_color_gray"));
+        System.out.println("Started test");
         Assert.assertTrue(productStatus.getText().contains("Нет в наличии"));
     }
 
