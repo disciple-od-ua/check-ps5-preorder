@@ -39,9 +39,9 @@ public class TestPS5IsSoldOut {
     public void checkRozetka() {
         System.out.println("Started test");
         driver.navigate().to("https://rozetka.com.ua/playstation_5/p223588825");
-        System.out.println("Started test");
+        System.out.println("Navigated");
         WebElement productStatus = driver.findElement(By.className("product__status_color_gray"));
-        System.out.println("Started test");
+        System.out.println("Found element");
         Assert.assertTrue(productStatus.getText().contains("Нет в наличии"));
     }
 
