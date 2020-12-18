@@ -18,6 +18,7 @@ public class TestPS5IsSoldOut {
         if (os == null) {
             os = "macos";
         }
+        System.out.println("SELECTED_OS: " + os);
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver_" + os);
     }
 
