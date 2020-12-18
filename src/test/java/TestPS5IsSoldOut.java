@@ -24,13 +24,17 @@ public class TestPS5IsSoldOut {
 
     @Before
     public void setUp() {
+        System.out.println("Configuring driver");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
+        options.addArguments("--disable-gpu");
         driver = new ChromeDriver(options);
+        System.out.println("Configuring driver is finished");
     }
 
     @Test
     public void checkRozetka() {
+        System.out.println("Started test");
         driver.get("https://rozetka.com.ua/playstation_5/p223588825");
         WebElement productStatus = driver.findElement(By.className("product__status_color_gray"));
         Assert.assertTrue(productStatus.getText().contains("Нет в наличии"));
