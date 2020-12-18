@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.util.concurrent.TimeUnit;
 
@@ -21,18 +23,15 @@ public class TestPS5IsSoldOut {
             os = "macos";
         }
         System.out.println("SELECTED_OS: " + os);
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver_" + os);
+        System.setProperty("webdriver.gecko.driver", "src/test/resources/geckodriver_" + os);
     }
 
     @Before
     public void setUp() {
         System.out.println("Configuring driver");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        options.addArguments("--disable-gpu");
-        options.addArguments("enable-features=NetworkServiceInProcess");
-        options.addArguments("disable-features=NetworkService");
-        driver = new ChromeDriver(options);
+        FirefoxOptions options = new FirefoxOptions();
+        options.setHeadless(true);
+        driver = new FirefoxDriver(options);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         System.out.println("Configuring driver is finished");
     }
