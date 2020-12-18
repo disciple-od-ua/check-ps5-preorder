@@ -30,6 +30,7 @@ public class TestPS5IsSoldOut {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
         options.addArguments("--disable-gpu");
+        options.addArguments("enable-features=NetworkServiceInProcess");
         driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         System.out.println("Configuring driver is finished");
