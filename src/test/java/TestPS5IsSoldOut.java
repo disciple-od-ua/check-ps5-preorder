@@ -35,7 +35,6 @@ public class TestPS5IsSoldOut {
 
     @Before
     public void setUp() {
-        System.out.println("Configuring driver");
         if (driverName.equals("gecko")) {
             FirefoxOptions options = new FirefoxOptions();
             options.setHeadless(true);
@@ -44,21 +43,66 @@ public class TestPS5IsSoldOut {
         if (driverName.equals("chrome")) {
             ChromeOptions options = new ChromeOptions();
             options.setHeadless(true);
-            options.setPageLoadStrategy(PageLoadStrategy.EAGER);
+            //options.setPageLoadStrategy(PageLoadStrategy.EAGER);
             driver = new ChromeDriver(options);
         }
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        System.out.println("Configuring driver is finished");
     }
 
     @Test
     public void checkRozetka() {
-        System.out.println("Started test");
         driver.navigate().to("https://rozetka.com.ua/playstation_5/p223588825/");
-        System.out.println("Navigated");
         WebElement productStatus = driver.findElement(By.className("product__status_color_gray"));
-        System.out.println("Found element");
         Assert.assertTrue(productStatus.getText().contains("Нет в наличии") || productStatus.getText().contains("Товар закончился"));
+    }
+
+    @Test
+    public void checkRozetka_digital() {
+        driver.navigate().to("https://rozetka.com.ua/playstation_5_digital_edition_2/p223596301/");
+        WebElement productStatus = driver.findElement(By.className("product__status_color_gray"));
+        Assert.assertTrue(productStatus.getText().contains("Нет в наличии") || productStatus.getText().contains("Товар закончился"));
+    }
+
+    @Test
+    public void checkAllo() {
+        driver.navigate().to("https://allo.ua/ua/igrovye-pristavki/igrovaya-konsol-playstation-5.html");
+        WebElement productStatus = driver.findElement(By.className("main-button-section__stock"));
+        Assert.assertTrue(productStatus.getText().contains("Немає в наявності"));
+    }
+
+    @Test
+    public void checkAllo_digital() {
+        driver.navigate().to("https://allo.ua/ua/igrovye-pristavki/konsol-playstation-5-digital-edition.html");
+        WebElement productStatus = driver.findElement(By.className("main-button-section__stock"));
+        Assert.assertTrue(productStatus.getText().contains("Немає в наявності"));
+    }
+
+    @Test
+    public void checkCitrus() {
+        driver.navigate().to("https://www.citrus.ua/igrovye-pristavki/igrovaya-konsol-sony-playstation-5-663700.html");
+        WebElement productStatus = driver.findElement(By.cssSelector("button[title='Уведомить о наличии']"));
+        Assert.assertTrue(productStatus.getText().contains("ХОЧУ"));
+    }
+
+    @Test
+    public void checkCitrus_digital() {
+        driver.navigate().to("https://www.citrus.ua/igrovye-pristavki/igrovaya-konsol-sony-playstation-5-digital-edition-668783.html");
+        WebElement productStatus = driver.findElement(By.cssSelector("button[title='Уведомить о наличии']"));
+        Assert.assertTrue(productStatus.getText().contains("ХОЧУ"));
+    }
+
+    @Test
+    public void checkFoxtrot() {
+        driver.navigate().to("https://www.foxtrot.com.ua/ru/shop/igrovye_pristavki_sony_ps5-bluray.html");
+        WebElement productStatus = driver.findElement(By.className("product-preorder-button"));
+        Assert.assertTrue(productStatus.getText().contains("Уведомить о наличии"));
+    }
+
+    @Test
+    public void checkFoxtrot_digital() {
+        driver.navigate().to("https://www.foxtrot.com.ua/ru/shop/igrovye_pristavki_sony_sony-ps5.html");
+        WebElement productStatus = driver.findElement(By.className("product-preorder-button"));
+        Assert.assertTrue(productStatus.getText().contains("Уведомить о наличии"));
     }
 
     @After
