@@ -43,7 +43,7 @@ public class TestPS5IsSoldOut {
         if (driverName.equals("chrome")) {
             ChromeOptions options = new ChromeOptions();
             options.setHeadless(true);
-            //options.setPageLoadStrategy(PageLoadStrategy.EAGER);
+            options.setPageLoadStrategy(PageLoadStrategy.EAGER);
             driver = new ChromeDriver(options);
         }
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
