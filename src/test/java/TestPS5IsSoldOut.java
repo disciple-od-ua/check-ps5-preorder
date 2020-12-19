@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -43,6 +44,7 @@ public class TestPS5IsSoldOut {
         if (driverName.equals("chrome")) {
             ChromeOptions options = new ChromeOptions();
             options.setHeadless(true);
+            options.setPageLoadStrategy(PageLoadStrategy.EAGER);
             driver = new ChromeDriver(options);
         }
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
