@@ -52,30 +52,34 @@ public class TestPS5IsSoldOut {
     @Test
     public void checkRozetka() {
         driver.navigate().to("https://rozetka.com.ua/playstation_5/p223588825/");
-        WebElement productStatus = driver.findElement(By.className("product__status_color_gray"));
+        WebElement productStatus = findByCss(".product__status_color_gray");
+        Assert.assertNotNull(productStatus);
         Assert.assertTrue(productStatus.getText().contains("Нет в наличии") || productStatus.getText().contains("Товар закончился"));
     }
 
     @Test
     public void checkRozetka_digital() {
         driver.navigate().to("https://rozetka.com.ua/playstation_5_digital_edition_2/p223596301/");
-        WebElement productStatus = driver.findElement(By.className("product__status_color_gray"));
+        WebElement productStatus = findByCss(".product__status_color_gray");
+        Assert.assertNotNull(productStatus);
         Assert.assertTrue(productStatus.getText().contains("Нет в наличии") || productStatus.getText().contains("Товар закончился"));
     }
 
-//    @Test
-//    public void checkAllo() {
-//        driver.navigate().to("https://allo.ua/ua/igrovye-pristavki/igrovaya-konsol-playstation-5.html");
-//        WebElement productStatus = driver.findElement(By.className("main-button-section__stock"));
-//        Assert.assertTrue(productStatus.getText().contains("Немає в наявності"));
-//    }
-//
-//    @Test
-//    public void checkAllo_digital() {
-//        driver.navigate().to("https://allo.ua/ua/igrovye-pristavki/konsol-playstation-5-digital-edition.html");
-//        WebElement productStatus = driver.findElement(By.className("main-button-section__stock"));
-//        Assert.assertTrue(productStatus.getText().contains("Немає в наявності"));
-//    }
+    @Test
+    public void checkAllo() {
+        driver.navigate().to("https://allo.ua/ua/igrovye-pristavki/igrovaya-konsol-playstation-5.html");
+        WebElement productStatus = findByCss(".main-button-section__stock");
+        Assert.assertNotNull(productStatus);
+        Assert.assertTrue(productStatus.getText().contains("Немає в наявності"));
+    }
+
+    @Test
+    public void checkAllo_digital() {
+        driver.navigate().to("https://allo.ua/ua/igrovye-pristavki/konsol-playstation-5-digital-edition.html");
+        WebElement productStatus = findByCss(".main-button-section__stock");
+        Assert.assertNotNull(productStatus);
+        Assert.assertTrue(productStatus.getText().contains("Немає в наявності"));
+    }
 //
 //    @Test
 //    public void checkCitrus() {
@@ -108,5 +112,34 @@ public class TestPS5IsSoldOut {
     @After
     public void tearDown() {
         driver.quit();
+        sleep(2);
+    }
+
+    private WebElement findByCss(String cssSelector) {
+        int attempts = 0;
+        while (attempts < 5) {
+            try {
+                WebElement productStatus = driver.findElement(By.cssSelector(cssSelector));
+                return productStatus;
+            } catch (Exception ex) {
+                if (attempts < 5) {
+                    attempts++;
+                    sleep(4);
+                } else {
+                    return null;
+                }
+            }
+        }
+        return null;
+    }
+
+    private void sleep(int sec) {
+        try {
+            Thread.sleep(sec * 1000);
+        } catch (InterruptedException e) {
+            System.out.println("Interrupted sleep");
+            e.printStackTrace();
+        }
+
     }
 }
