@@ -53,16 +53,22 @@ public class TestPS5IsSoldOut {
     public void checkRozetka() {
         driver.navigate().to("https://rozetka.com.ua/playstation_5/p223588825/");
         WebElement productStatus = findByCss(".product__status_color_gray");
-        Assert.assertNotNull(productStatus);
-        Assert.assertTrue(productStatus.getText().contains("Нет в наличии") || productStatus.getText().contains("Товар закончился"));
+        Assert.assertNotNull("Статус продукта не найден", productStatus);
+
+        Assert.assertTrue("Текст неверный", productStatus.getText().contains("Нет в наличии")
+                || productStatus.getText().contains("Товар закончился")
+                || productStatus.getText().contains("Немає в наявності"));
     }
 
     @Test
     public void checkRozetka_digital() {
         driver.navigate().to("https://rozetka.com.ua/playstation_5_digital_edition_2/p223596301/");
         WebElement productStatus = findByCss(".product__status_color_gray");
-        Assert.assertNotNull(productStatus);
-        Assert.assertTrue(productStatus.getText().contains("Нет в наличии") || productStatus.getText().contains("Товар закончился"));
+        Assert.assertNotNull("Статус продукта не найден", productStatus);
+
+        Assert.assertTrue("Текст неверный", productStatus.getText().contains("Нет в наличии")
+                || productStatus.getText().contains("Товар закончился")
+                || productStatus.getText().contains("Немає в наявності"));
     }
 
 //    @Test
