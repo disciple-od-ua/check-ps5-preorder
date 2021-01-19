@@ -57,6 +57,7 @@ public class TestPS5IsSoldOut {
 
         Assert.assertTrue("Текст неверный", productStatus.getText().contains("Нет в наличии")
                 || productStatus.getText().contains("Товар закончился")
+                || productStatus.getText().contains("Товар закінчився")
                 || productStatus.getText().contains("Немає в наявності"));
     }
 
@@ -68,6 +69,7 @@ public class TestPS5IsSoldOut {
 
         Assert.assertTrue("Текст неверный", productStatus.getText().contains("Нет в наличии")
                 || productStatus.getText().contains("Товар закончился")
+                || productStatus.getText().contains("Товар закінчився")
                 || productStatus.getText().contains("Немає в наявності"));
     }
 
