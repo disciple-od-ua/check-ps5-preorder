@@ -35,6 +35,7 @@ public class TestPS5IsSoldOut {
 
     @Before
     public void setUp() {
+	String driverName = "chrome";
         if (driverName.equals("gecko")) {
             FirefoxOptions options = new FirefoxOptions();
             options.setHeadless(true);
