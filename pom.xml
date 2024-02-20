@@ -10,6 +10,11 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <version>1.0</version>
     <packaging>jar</packaging>
 
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>

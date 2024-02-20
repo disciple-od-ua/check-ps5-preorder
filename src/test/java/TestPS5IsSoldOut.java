@@ -30,7 +30,7 @@ public class TestPS5IsSoldOut {
         }
         System.out.println("SELECTED_OS: " + os);
         System.out.println("SELECTED_DRIVER: " + driverName);
-        System.setProperty(String.format("webdriver.%s.driver", driverName), String.format("src/test/resources/%sdriver_%s", driverName, os));
+        //System.setProperty(String.format("webdriver.%s.driver", driverName), String.format("src/test/resources/%sdriver_%s", driverName, os));
     }
 
     @Before
